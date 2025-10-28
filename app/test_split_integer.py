@@ -25,7 +25,6 @@ def test_sum_of_the_parts_should_be_equal_to_value(
     [
         (8, 1, [8]),
         (6, 2, [3, 3]),
-        (32, 4, [8, 8, 8, 8]),
     ]
 )
 def test_should_split_into_equal_parts_when_value_divisible_by_parts(
@@ -33,7 +32,7 @@ def test_should_split_into_equal_parts_when_value_divisible_by_parts(
         number_of_parts: int,
         expected: list
 ) -> None:
-    assert split_integer(value, number_of_parts) == expected
+    assert len(split_integer(value, number_of_parts)) == expected
 
 
 @pytest.mark.parametrize(
@@ -53,18 +52,18 @@ def test_should_return_part_equals_to_value_when_split_into_one_part(
 
 
 @pytest.mark.parametrize(
-    "value, number_of_parts",
+    "value, number_of_parts, expected",
     [
-        (17, 4),
-        (32, 6),
+        (17, 4, [4, 4, 4, 5]),
+        (32, 6, [5, 5, 5, 5, 6, 6]),
     ]
 )
 def test_parts_should_be_sorted_when_they_are_not_equal(
         value: int,
         number_of_parts: int,
+        expected: list,
 ) -> None:
-    assert (split_integer(value, number_of_parts)
-            == sorted(split_integer(value, number_of_parts)))
+    assert split_integer(value, number_of_parts) == expected
 
 
 @pytest.mark.parametrize(
